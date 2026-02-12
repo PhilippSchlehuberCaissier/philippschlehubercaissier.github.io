@@ -7,11 +7,40 @@
 </head>
 <body>
     <h1>Interpreted Higher-Dimensional Automata for Concurrent Discrete-Event Control</h1>
-    <h2>Video demonstration for the closed-loop control obtained from an IHDA</h2>
+    <h2>First version of the controller</h2>
+    <p>The first video demonstrates the closed-loop control obtained from an IHDA in the version
+        shown in Fig. 4 (as Interpreted Petri net) and 5 (as IHDA).
+    </p>
     <video width="800" controls>
         <source src="files/WODES26_HDA_ControlCommand_exampleFactoryIO.mp4" type="video/mp4">
         <source src="files/wodes26.webm" type="video/webm">
     </video>
-    <p>Download link: <a href="https://partage.imt.fr/index.php/s/ro2gojbiXzWGQec">here</a></p>
+    <p>Note that in this version the chariot already starts moving to the right
+       while the pusher is still decharging the chariot. This is because the IPN
+       can have a token in the place labeled by "Pusher" and "R2" at the same time.
+    </p>
+    <h2>Correcting the controller</h2>
+    <p>In order to repair this incorrect behavior the IPN was modified as 
+        shown in Fig. 6 leading to the IHDA shown in Fig. 7. 
+        The second video demonstrates the closed-loop control obtained from this modified IHDA.
+    </p>
+    <video width="800" controls>
+        <source src="files/WODES26_HDA_control_corrected.mp4" type="video/mp4">
+        <source src="files/wodes26_corr.webm" type="video/webm">
+    </video>
+    <p>Now the movement of the chariot and the pusher are properly decoupled 
+       and the correct unloading of the chariot is guaranteed.
+    </p>
+    <h2>Generating the controller</h2>
+    <p>The pipeline of generating a closed loop controller usable with factory 
+       io from an IPN is publicly available in the 
+       <a href="https://gitlabev.imtbs-tsp.eu/philipp.schlehuber-caissier/pn2hda/-/tree/sub/wodes26">pn2HDA</a>-repository. 
+       (Note the branch "sub/wodes26"!).
+    </p>
+    <p>In order to execute it you first need to build the pn2HDA executables as 
+        described in the README.
+        The controller generation is currently implemented as a Python script, 
+        which is found in the hda2csg sub-folder.
+    </p>
 </body>
 </html>
